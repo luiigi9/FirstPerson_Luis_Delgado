@@ -5,8 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speedMovement;
+    [SerializeField] private float gravityScale;
+    private Vector3 movementY;
     CharacterController cc;
     private Camera cam;
+    [SerializeField] Transform feet;
+    [SerializeField] private float rayCast;
+    [SerializeField] private LayerMask wtIsFloor;
+    [SerializeField] private float jumpHeight;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +35,35 @@ public class Player : MonoBehaviour
             Vector3 movement = Quaternion.Euler(0, angleRotazzione, 0) * Vector3.forward;
             cc.Move(movement * speedMovement * Time.deltaTime);
         }
+        Gravity();
+        FloorDetector();
         
         
+    }
+    private void Gravity()
+    {
+        movementY.y += gravityScale * Time.deltaTime;
+        cc.Move(movementY * Time.deltaTime);
+    }
+    private void FloorDetector()
+    {
+        Collider[] colliderArray = Physics.OverlapSphere(feet.position, rayCast, wtIsFloor);
+        if (colliderArray.Length > 0)
+        {
+            movementY.y = 0;
+            Jump();
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(feet.position, rayCast);
+    }
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            movementY.y = Mathf.Sqrt(-2 * gravityScale * jumpHeight);
+        }
+
     }
 }
