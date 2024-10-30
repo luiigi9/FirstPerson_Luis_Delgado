@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Vector2 movimento = new Vector2(h, v).normalized;
+        transform.eulerAngles = new Vector3(0, cam.transform.eulerAngles.y, 0); //Linea para que el cuerpo rote con la camara
         if (movimento.sqrMagnitude > 0)
         {
             float angleRotazzione = Mathf.Atan2(movimento.x, movimento.y) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
