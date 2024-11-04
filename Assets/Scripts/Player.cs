@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float rayCast;
     [SerializeField] private LayerMask wtIsFloor;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private float life;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,14 @@ public class Player : MonoBehaviour
         {
             movementY.y = 0;
             Jump();
+        }
+    }
+    public void Damage(float damageR)
+    {
+        life -= damageR;
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
     private void OnDrawGizmos()
