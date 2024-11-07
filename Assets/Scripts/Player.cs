@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
         if (life <= 0)
         {
             Destroy(gameObject);
+            
         }
     }
     private void OnDrawGizmos()

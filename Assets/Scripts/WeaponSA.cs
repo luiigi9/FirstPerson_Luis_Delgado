@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class WeaponSA : MonoBehaviour
 {
-    [SerializeField] ParticleSystem ps;
+    [SerializeField] private WeaponSO data1;
+    [SerializeField] private ParticleSystem ps;
+    private Camera cam;
     // Start is called before the first frame update
     void Start()
     {
-        
+        cam = Camera.main;
     }
 
     // Update is called once per frame
@@ -17,6 +19,11 @@ public class WeaponSA : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             ps.Play();
+            if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, data1.distanceAttack))
+            {
+                //hitInfo.transform;
+                hitInfo.transform.GetComponent<Enemy>().DamageRecieved(data1.damageAttack);
+            }
         }
     }
 }

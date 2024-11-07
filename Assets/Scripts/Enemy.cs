@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Video;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask impact;
     [SerializeField] private float damage;
     private bool damaged = false;
+    [SerializeField] float life;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,14 @@ public class Enemy : MonoBehaviour
     private void WindowAttackOff()
     {
         window = false;
+    }
+    public void DamageRecieved(float damage)
+    {
+        life -= damage;
+        if(life <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
