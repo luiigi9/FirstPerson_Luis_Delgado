@@ -21,8 +21,9 @@ public class WeaponSA : MonoBehaviour
             ps.Play();
             if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, data1.distanceAttack))
             {
+                if(hitInfo.transform.CompareTag("EnemyPart"))
                 //hitInfo.transform;
-                hitInfo.transform.GetComponent<Enemy>().DamageRecieved(data1.damageAttack);
+                hitInfo.transform.GetComponent<EnemyPart>().DamageRecieved(data1.damageAttack);
             }
         }
     }

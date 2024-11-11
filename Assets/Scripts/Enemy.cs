@@ -16,12 +16,24 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damage;
     private bool damaged = false;
     [SerializeField] float life;
+    private Rigidbody[] bones;
+
+    public float Life { get => life; set => life = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         nma = GetComponent<NavMeshAgent>();
         player = GameObject.FindObjectOfType<Player>();
         anmtr = GetComponent<Animator>();
+        bones = GetComponentsInChildren<Rigidbody>();
+        
+        for (int i = 0; i < bones.Length; i++)
+        {
+            bones[i].isKinematic = true;
+        }
+
+        ChangeBoneState(true);
     }
 
     // Update is called once per frame
@@ -32,6 +44,7 @@ public class Enemy : MonoBehaviour
         {
             DetectPlayer();
         }
+        
     }
     private void DetectPlayer()
     {
@@ -56,6 +69,21 @@ public class Enemy : MonoBehaviour
             anmtr.SetBool("Attack", true);
         }
     }
+    public void Death()
+    {
+        nma.enabled = false;
+        anmtr.enabled = false;
+        ChangeBoneState(false);
+        Destroy(gameObject, 10);
+    }
+
+    private void ChangeBoneState(bool state)
+    {
+        for (int i = 0; i < bones.Length; i++)
+        {
+            bones[i].isKinematic = state;
+        }
+    }
 
     private void EndAttack()
     {
@@ -71,13 +99,6 @@ public class Enemy : MonoBehaviour
     {
         window = false;
     }
-    public void DamageRecieved(float damage)
-    {
-        life -= damage;
-        if(life <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
+    
 
 }
