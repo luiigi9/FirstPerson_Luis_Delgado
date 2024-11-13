@@ -19,11 +19,15 @@ public class Interactions : MonoBehaviour
     {
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, distanceI))
         {
-            if (hit.transform.CompareTag("Ammo"))
+            if (hit.transform.TryGetComponent(out AmmoBox Ammo))
             {
                 Debug.Log("Ammo Detected");
                 objectI = hit.transform;
                 //objectI.GetComponent<Outline>().enabled = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Ammo.OpenBox();
+                }
             }
             
         }
