@@ -56,6 +56,15 @@ public class Player : MonoBehaviour
             Jump();
         }
     }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("EnemyPart"))
+        {
+            Rigidbody rbE = hit.gameObject.GetComponent<Rigidbody>();
+            Vector3 forceDirection = hit.transform.position - transform.position;
+            rbE.AddForce(forceDirection.normalized * 50, ForceMode.Impulse);
+        }
+    }
     public void Damage(float damageR)
     {
         life -= damageR;

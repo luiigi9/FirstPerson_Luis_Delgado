@@ -8,7 +8,7 @@ public class Coroutines_ : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Coroutine nombre = StartCoroutine(TrafficLight()); Para tener localizados las coroutinas que abres y si luego quieres cerrar -> StopCoroutine(nombre);
     }
 
     // Update is called once per frame

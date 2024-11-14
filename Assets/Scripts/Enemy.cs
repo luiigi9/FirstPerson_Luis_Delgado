@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
     private void Chasing()
     {
         nma.SetDestination(player.transform.position);
-        if (nma.remainingDistance <= nma.stoppingDistance)
+        if (!nma.pathPending && nma.remainingDistance <= nma.stoppingDistance)
         {
             nma.isStopped = true;
             anmtr.SetBool("Attack", true);

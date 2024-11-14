@@ -9,12 +9,16 @@ public class Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(enemyPrefab, spawnPoints[0].position, Quaternion.identity);
+        StartCoroutine(Spawner());
     }
-
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private IEnumerator Spawner()
+    {
+        Instantiate(enemyPrefab, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
+        yield return new WaitForSeconds(2);
     }
 }
