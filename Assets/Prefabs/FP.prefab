@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 4547305234242830773}
   - component: {fileID: 3204769864591583353}
   - component: {fileID: 3464938961629187134}
+  - component: {fileID: 6987661545548866634}
   - component: {fileID: 4381429718406144249}
   m_Layer: 6
   m_Name: Player
@@ -451,6 +452,21 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6987661545548866634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6204747016317504604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2ca00513ec2a04180abc48f216671b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  granadePrefab: {fileID: 3122615816512078443, guid: 3344cdb3ef988a8468e486430582cbe1,
+    type: 3}
+  point: {fileID: 0}
 --- !u!114 &4381429718406144249
 MonoBehaviour:
   m_ObjectHideFlags: 0

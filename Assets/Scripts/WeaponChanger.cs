@@ -6,6 +6,7 @@ public class WeaponChanger : MonoBehaviour
 {
     [SerializeField] GameObject[] guns;
     private int indice = 0;
+    private float scrollwheel;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,24 @@ public class WeaponChanger : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        KeyboardChange();
+        MouseChange();
+    }
+    private void MouseChange()
+    {
+        scrollwheel = Input.GetAxis("Mouse ScrollWheel");
+        if(scrollwheel > 0)
+        {
+            ChangeGun(indice + 1);
+        }
+        else if (scrollwheel < 0)
+        {
+            ChangeGun(indice - 1);
+        }
+    }
+
+    private void KeyboardChange()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -31,8 +50,13 @@ public class WeaponChanger : MonoBehaviour
 
     private void ChangeGun(int i)
     {
-        guns[indice].SetActive(false);
-        indice = i;
-        guns[indice].SetActive(true);
+        
+        if (i >= guns.Length && i < guns.Length)
+        {
+            indice = i;
+            guns[indice].SetActive(true);
+            guns[indice].SetActive(false);
+        }
+        
     }
 }
