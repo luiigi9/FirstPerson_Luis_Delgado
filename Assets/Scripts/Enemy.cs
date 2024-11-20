@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Video;
 
 public class Enemy : MonoBehaviour
 {
@@ -68,6 +67,7 @@ public class Enemy : MonoBehaviour
             nma.isStopped = true;
             anmtr.SetBool("Attack", true);
         }
+        LookAtPlayer();
     }
     public void Death()
     {
@@ -99,6 +99,12 @@ public class Enemy : MonoBehaviour
     {
         window = false;
     }
-    
+    private void LookAtPlayer()
+    {
+        Vector3 playerDirection = player.transform.position - transform.position.normalized;
+        playerDirection.y = 0;
+        transform.rotation = Quaternion.LookRotation(playerDirection);
+    }
+
 
 }

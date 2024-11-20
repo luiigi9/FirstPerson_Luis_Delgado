@@ -51,11 +51,11 @@ public class WeaponChanger : MonoBehaviour
     private void ChangeGun(int i)
     {
         
-        if (i >= guns.Length && i < guns.Length)
+        if (i >= 0 && i < guns.Length)
         {
+            guns[indice].SetActive(false);
             indice = i;
             guns[indice].SetActive(true);
-            guns[indice].SetActive(false);
         }
         
     }
