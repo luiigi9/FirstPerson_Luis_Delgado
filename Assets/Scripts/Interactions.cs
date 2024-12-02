@@ -19,21 +19,27 @@ public class Interactions : MonoBehaviour
     {
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, distanceI))
         {
-            if (hit.transform.TryGetComponent(out AmmoBox Ammo))
+            //if (hit.transform.TryGetComponent(out AmmoBox Ammo))
+            //{
+            //    Debug.Log("Ammo Detected");
+            //    objectI = hit.transform;
+            //    objectI.GetComponent<Outline>().enabled = true;
+            //    if (Input.GetKeyDown(KeyCode.E))
+            //    {
+            //        Ammo.OpenBox();
+            //    }
+            //}
+            if (hit.transform.CompareTag("Ammo"))
             {
                 Debug.Log("Ammo Detected");
                 objectI = hit.transform;
-                //objectI.GetComponent<Outline>().enabled = true;
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Ammo.OpenBox();
-                }
+                objectI.GetComponent<Outline>().enabled = true;
             }
-            
+
         }
         else if (objectI)
         {
-            //objectI.GetComponent<Outline>().enabled = false;
+            objectI.GetComponent<Outline>().enabled = false;
             objectI = null;
         }
     }
