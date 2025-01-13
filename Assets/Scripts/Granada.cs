@@ -17,7 +17,7 @@ public class Granada : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward.normalized * impulseV, ForceMode.Impulse);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 1);
     }
 
     // Update is called once per frame

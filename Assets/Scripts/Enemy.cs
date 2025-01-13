@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float life;
     private Rigidbody[] bones;
 
+    private bool death;
+
     public float Life { get => life; set => life = value; }
 
     // Start is called before the first frame update
@@ -38,6 +40,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (death) return;
+
         Chasing();
         if (window && damaged == false)
         {
@@ -75,6 +79,7 @@ public class Enemy : MonoBehaviour
         anmtr.enabled = false;
         ChangeBoneState(false);
         Destroy(gameObject, 10);
+        death = true;
     }
 
     private void ChangeBoneState(bool state)
@@ -101,7 +106,7 @@ public class Enemy : MonoBehaviour
     }
     private void LookAtPlayer()
     {
-        Vector3 playerDirection = player.transform.position - transform.position.normalized;
+        Vector3 playerDirection = (player.transform.position - transform.position).normalized;
         playerDirection.y = 0;
         transform.rotation = Quaternion.LookRotation(playerDirection);
     }

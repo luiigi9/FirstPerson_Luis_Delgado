@@ -184,7 +184,7 @@ MonoBehaviour:
   damagable:
     serializedVersion: 2
     m_Bits: 0
-  impulseV: 4
+  impulseV: 10
   explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
     type: 3}
 --- !u!1 &4133495374526020581
