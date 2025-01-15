@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask wtIsFloor;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float life;
+    int cantidadChips = 0;
+    [SerializeField] TMP_Text textChips;
 
     // Start is called before the first frame update
     void Start()
@@ -86,4 +90,17 @@ public class Player : MonoBehaviour
         }
 
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Chip"))
+        {
+            Destroy(other.gameObject);
+            cantidadChips++;
+            textChips.SetText("Chips: " + cantidadChips);
+        }
+        if (cantidadChips <= 4)
+        {
+            SceneManager.LoadScene(1);
+        }
+    } 
 }

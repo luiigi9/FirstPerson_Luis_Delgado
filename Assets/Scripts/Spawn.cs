@@ -21,7 +21,7 @@ public class Spawn : MonoBehaviour
         while (true)
         {
             Instantiate(enemyPrefab, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
         }
     }
 }
