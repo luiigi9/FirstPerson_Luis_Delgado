@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float life;
     int cantidadChips = 0;
     [SerializeField] TMP_Text textChips;
+    [SerializeField] TMP_Text textVida;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        textVida.SetText("Vida: " + life);
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Vector2 movimento = new Vector2(h, v).normalized;
@@ -98,9 +100,9 @@ public class Player : MonoBehaviour
             cantidadChips++;
             textChips.SetText("Chips: " + cantidadChips);
         }
-        if (cantidadChips <= 4)
+        if (cantidadChips >= 4)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     } 
 }
